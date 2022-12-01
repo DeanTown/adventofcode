@@ -2,7 +2,7 @@ from lib.utils import read_input
 
 def go():
 
-    input = read_input("y2022/day1/input.txt", split_lines=True)
+    input = read_input("input/2022:1.txt", split_lines=True)
 
     # PART 1
 

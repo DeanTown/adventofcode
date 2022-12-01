@@ -1,6 +1,6 @@
 import unittest
 
-from y2022.day1 import go as day1
+from y2022 import day1
 
 class Test2022(unittest.TestCase):
 

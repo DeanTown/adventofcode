@@ -1,7 +1,7 @@
 from lib.utils import read_input
 from lib.graph import Graph
 
-input = read_input("2021/day15/input.txt")
+input = read_input("input/2021:15.txt")
 # We will need both the individual lines as well as the whole string of numbers
 lines = input.split('\n')
 input = input.replace('\n', '')
