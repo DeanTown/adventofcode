@@ -8,24 +8,24 @@ Advent of code, for me, is about learning clever techniques, data structures, al
 
 From the root directory of this repo, all you need to do to run a given day is:
 ```
-python3 -m YEAR.DAY.go
+python3 -m YEAR.DAY
 ```
 
 A more specific example:
 ```
-python3 -m y2022.day1.go
+python3 -m y2022.day1
 ```
 
 ## Running unit tests
 
 From the root directory of this repo, all you need to do to run a year's tests is:
 ```
-python3 -m unittest tests.YEAR
+python3 -m unittest tests.test_YEAR
 ```
 
 A more specific example:
 ```
-python3 -m unittest tests.2022
+python3 -m unittest tests.test_2022
 ```
 
 To run *all* unit tests at once:
