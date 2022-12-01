@@ -11,7 +11,19 @@ From the root directory of this repo, all you need to do to run a given day is:
 python3 -m YEAR.DAY.go
 ```
 
-A more specific example being:
+A more specific example:
 ```
-python3 -m 2022.day1.go
+python3 -m y2022.day1.go
+```
+
+## Running unit tests
+
+From the root directory of this repo, all you need to do to run a year's tests is:
+```
+python3 -m unittest tests.YEAR
+```
+
+A more specific example:
+```
+python3 -m unittest tests.2022
 ```
