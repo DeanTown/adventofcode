@@ -27,3 +27,8 @@ A more specific example:
 ```
 python3 -m unittest tests.2022
 ```
+
+To run *all* unit tests at once:
+```
+python3 -m unittest
+```
