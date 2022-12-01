@@ -2,8 +2,7 @@ from lib.utils import read_input
 
 def go():
 
-    input = read_input("input/2021:1.txt", split_lines=True)
-    input = [int(measure) for measure in input]
+    input = read_input("input/2021:1.txt", convert_to_num=True)
 
     # PART 1
 
