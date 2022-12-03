@@ -8,20 +8,18 @@ def go():
     # PART 1
 
     split = [[line[:len(line)//2], line[len(line)//2:]] for line in input]
-    duplicates = find_duplicates(split)
-    part1 = calculate_priority(duplicates)
+    part1 = find_duplicates(split)
 
     # PART 2
 
     split = [input[i:i+3] for i in range(0, len(input), 3)]
-    duplicates = find_duplicates(split)
-    part2 = calculate_priority(duplicates)
+    part2 = find_duplicates(split)
 
     return part1, part2
 
 """
 Iterate through the first item in the split and check if each character is contained in the other split items.
-If the item if found in the other strings, then break the loop, otherwise remove all instances of that character
+If the item is found in the other strings, then break the loop, otherwise remove all instances of that character
 from the list to speed things up.
 """
 def find_duplicates(split):
@@ -34,7 +32,7 @@ def find_duplicates(split):
                 break
             else:
                 first = list(filter(lambda x: x != char, first))
-    return duplicates
+    return calculate_priority(duplicates)
 
 def calculate_priority(chars):
     priority_map = {c: i+1 for i, c in enumerate(list(s.ascii_lowercase) + list(s.ascii_uppercase))}
