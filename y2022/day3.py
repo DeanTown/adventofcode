@@ -21,8 +21,6 @@ def go():
 
 def find_duplicates(split):
     duplicates = []
-    import ipdb
-    ipdb.set_trace()
     for first, *rest in split:
         while True:
             char = first[0]
