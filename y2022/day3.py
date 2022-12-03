@@ -19,6 +19,11 @@ def go():
 
     return part1, part2
 
+"""
+Iterate through the first item in the split and check if each character is contained in the other split items.
+If the item if found in the other strings, then break the loop, otherwise remove all instances of that character
+from the list to speed things up.
+"""
 def find_duplicates(split):
     duplicates = []
     for first, *rest in split:
