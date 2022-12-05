@@ -32,3 +32,15 @@ To run *all* unit tests at once:
 ```
 python3 -m unittest
 ```
+
+
+# Languages
+
+- Julia
+- Go
+- Groovy
+- DogeScript
+- Haskell
+- Perl
+- Rust
+- CoffeeScript
