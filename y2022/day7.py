@@ -8,29 +8,25 @@ def go():
 
     for line in input:
         elements = line.split()
-        # The line is a command
         if '$' in elements:
             if 'cd' in elements:
                 dir_name = elements[2]
                 if dir_name == '..':
+                    val = file_structure[tuple(current_path)]
                     current_path.pop()
+                    file_structure[tuple(current_path)] += val
                 else:
-                    # Need to check if a dict already exists for this path, if not then create one
                     current_path.append(dir_name)
-                    if dir_name == '/':
-                        # This is the root directory -- don't create a key for it
-                        continue
-                    key = tuple(current_path)
-                    print(key)
-                    file_structure[key] = {}
-                    print(file_structure)
-                    print(current_path)
-            elif 'ls' in elements:
-                pass
-        # The line is a file/director representation
-        else:
-            pass
-    return 1, 2
+                    file_structure[tuple(current_path)] = 0
+        elif 'dir' not in elements:
+            file_structure[tuple(current_path)] += int(elements[0])
+    
+    count = 0
+    for val in file_structure.values():
+        if val < 100_000:
+            count += val
+
+    return count, 2
 
 
 if __name__ == "__main__":
