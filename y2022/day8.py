@@ -4,6 +4,7 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.visited = False
+        self.scenic = 1
 
     def __repr__(self):
         return str(self.value)
@@ -21,16 +22,27 @@ def go():
     sightlines = [north, south, east, west]
 
     visible = 0
+    best = 0
     for direction in sightlines:
         for line in direction:
             tallest = Node(-1)
+            heights = dict.fromkeys(range(10),0)
             for tree in line:
                 if tallest.value < tree.value:
                     if not tree.visited: visible += 1
                     tree.visited = True
                     tallest = tree
+                # Part 2
+                tree.scenic *= heights[tree.value]
+                heights = {
+                    key : value + 1 if key > tree.value else 0 
+                    for key,value in heights.items()
+                }
 
-    return visible, 2
+                if tree.scenic > best:
+                    best = tree.scenic
+
+    return visible, best
 
 
 if __name__ == "__main__":
