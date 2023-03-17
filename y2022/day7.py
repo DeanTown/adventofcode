@@ -1,5 +1,5 @@
 from lib.utils import read_input
-# https://realpython.com/python-eval-function/
+
 def go():
 
     input = read_input("input/2022:7.txt", split_lines=True)
