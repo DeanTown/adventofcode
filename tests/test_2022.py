@@ -37,4 +37,4 @@ class Test2022(unittest.TestCase):
     def test_day7(self):
         results = day7.go()
         self.assertEqual(results[0], 1325919)
-        self.assertEqual(results[1], 2564)
+        self.assertEqual(results[1], 2050735)
