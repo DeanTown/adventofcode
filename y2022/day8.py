@@ -35,10 +35,9 @@ def go():
                 # Part 2
                 tree.scenic *= heights[tree.value]
                 heights = {
-                    key : value + 1 if key > tree.value else 0 
+                    key : value + 1 if key > tree.value else 1 
                     for key,value in heights.items()
                 }
-
                 if tree.scenic > best:
                     best = tree.scenic
 
