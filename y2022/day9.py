@@ -25,7 +25,13 @@ class Point:
         self.y = y
 
     def __sub__(self, other):
-        return (self.x - other.x, self.y - other.y)
+        return Point(self.x - other.x, self.y - other.y)
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __mul__(self, other):
+        return Point(self.x * other.x, self.y * other.y)
 
     def __repr__(self):
         return f"({self.x}, {self.y})"
@@ -34,18 +40,30 @@ class Rope:
     def __init__(self):
         self.head = Point(0, 0)
         self.tail = Point(0, 0)
-        self.visited_nodes = {}
+        self.visited_nodes = set()
 
     def move_head(self, direction, distance):
         if direction in ['D', 'L']:
             distance *= -1
 
         if direction in ['U', 'D']:
-            self.head = Point(self.head.y, self.head.y + distance)
+            self.head = Point(self.head.x, self.head.y + distance)
         else:
-            self.head = Point(self.head.y + distance, self.head.y)
+            self.head = Point(self.head.x + distance, self.head.y)
 
         return self.head
+
+    def calculate_diff(self):
+        diff = self.head - self.tail
+
+        if not diff.x == 0 and not diff.y == 0:
+            return diff
+        vector = Point(0, 0)
+        if abs(diff.x) > 1:
+            vector.x = 1 if diff.x > 0 else -1
+        if abs(diff.y) > 1:
+            vector.y = 1 if diff.y > 0 else -1
+        return vector         
 
 
 def go():
@@ -55,14 +73,14 @@ def go():
 
     for line in input:
         direction, distance = line.split()
-        for dist in range(int(distance)):
+        for _ in range(int(distance)):
             head = rope.move_head(direction, 1)
             # We can use the difference between the head and tail of the rope to determine what movement is required
-            diff = head - rope.tail
-            
-        
+            diff = rope.calculate_diff()
+            rope.tail += diff
+            rope.visited_nodes.add(rope.tail)
 
-    return 1,2
+    return len(rope.visited_nodes),2
 
 
 if __name__ == "__main__":
