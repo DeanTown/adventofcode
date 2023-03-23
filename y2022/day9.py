@@ -19,6 +19,7 @@ This solution will work for any size grid as well as negatives in both direction
 
 from lib.utils import read_input
 
+
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -36,22 +37,20 @@ class Point:
     def __repr__(self):
         return f"({self.x}, {self.y})"
 
-class Rope:
+
+class Grid:
     def __init__(self):
         self.head = Point(0, 0)
         self.tail = Point(0, 0)
         self.visited_nodes = set()
 
     def move_head(self, direction, distance):
-        if direction in ['D', 'L']:
+        if direction in ["D", "L"]:
             distance *= -1
-
-        if direction in ['U', 'D']:
+        if direction in ["U", "D"]:
             self.head = Point(self.head.x, self.head.y + distance)
         else:
             self.head = Point(self.head.x + distance, self.head.y)
-
-        return self.head
 
     def calculate_diff(self):
         diff = self.head - self.tail
@@ -63,24 +62,23 @@ class Rope:
             vector.x = 1 if diff.x > 0 else -1
         if abs(diff.y) > 1:
             vector.y = 1 if diff.y > 0 else -1
-        return vector         
+        return vector
 
 
 def go():
-
     input = read_input("input/2022:9.txt", split_lines=True)
-    rope = Rope()
+    grid = Grid()
 
     for line in input:
         direction, distance = line.split()
         for _ in range(int(distance)):
-            head = rope.move_head(direction, 1)
-            # We can use the difference between the head and tail of the rope to determine what movement is required
-            diff = rope.calculate_diff()
-            rope.tail += diff
-            rope.visited_nodes.add(rope.tail)
+            grid.move_head(direction, 1)
+            # We can use the difference between the head and tail of the grid to determine what movement is required
+            diff = grid.calculate_diff()
+            grid.tail += diff
+            grid.visited_nodes.add(grid.tail)
 
-    return len(rope.visited_nodes),2
+    return len(grid.visited_nodes), 2
 
 
 if __name__ == "__main__":
