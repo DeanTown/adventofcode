@@ -26,8 +26,10 @@ class Grid:
         self.visited_nodes = set()
 
     def move_head(self, direction, distance=1):
+        # If the movement is down or to the left, then the distance should be negative
         if direction in ["D", "L"]:
             distance *= -1
+        # If the movement is up or down, then the distance should be applied to the y coordinate. Otherwise it should be applied to the x coordinate.
         if direction in ["U", "D"]:
             self.head = Point(self.head.x, self.head.y + distance)
         else:
@@ -47,7 +49,7 @@ class Grid:
 
 
 def go():
-    input = read_input("input/2022:9.txt", split_lines=True)
+    input = read_input("input/2022:9-example.txt", split_lines=True)
     grid = Grid()
 
     for line in input:
@@ -59,7 +61,8 @@ def go():
             grid.tail += diff
             grid.visited_nodes.add(grid.tail)
 
-    return len(grid.visited_nodes), 2
+    # Subtract one from the set of visited nodes to account for the starting position which is not counted
+    return len(grid.visited_nodes) - 1, 2
 
 
 if __name__ == "__main__":
