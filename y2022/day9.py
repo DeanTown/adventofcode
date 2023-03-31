@@ -1,22 +1,3 @@
-"""
-Think about it like it's a numbered grid, and instead of caring about the data structure, just calculate the positions based on the rules and keep a list of visited locations
-
-5
-4
-3 A   B
-2
-1   
-0 
-  0 1 2 3 4 5
-
-(0,0) is the starting coordinate
-If we move 3 up:
-A=(0,3)
-If we move 2 right
-B=(2,3)
-This solution will work for any size grid as well as negatives in both directions
-"""
-
 from lib.utils import read_input
 
 
@@ -44,7 +25,7 @@ class Grid:
         self.tail = Point(0, 0)
         self.visited_nodes = set()
 
-    def move_head(self, direction, distance):
+    def move_head(self, direction, distance=1):
         if direction in ["D", "L"]:
             distance *= -1
         if direction in ["U", "D"]:
@@ -72,7 +53,7 @@ def go():
     for line in input:
         direction, distance = line.split()
         for _ in range(int(distance)):
-            grid.move_head(direction, 1)
+            grid.move_head(direction)
             # We can use the difference between the head and tail of the grid to determine what movement is required
             diff = grid.calculate_diff()
             grid.tail += diff
