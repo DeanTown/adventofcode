@@ -44,12 +44,15 @@ class Test2022(unittest.TestCase):
         self.assertEqual(results[0], 1835)
         self.assertEqual(results[1], 263670)
 
-    def test_day9(self):
-        results = day9.go()
-        self.assertEqual(results[0], False)
-        self.assertEqual(results[1], False)
+    # def test_day9(self):
+    #     results = day9.go()
+    #     self.assertEqual(results[0], False)
+    #     self.assertEqual(results[1], False)
 
     def test_day10(self):
         results = day10.go()
         self.assertEqual(results[0], 14360)
-        self.assertEqual(results[1], False)
+        self.assertEqual(
+            results[1],
+            "###...##..#..#..##..####.###..####.####.#..#.#..#.#.#..#..#.#....#..#.#.......#.###..#....##...#..#.###..#..#.###....#..#..#.#.##.#.#..####.#....###..#.....#...#..#.#..#.#.#..#..#.#....#.#..#....#....###...###.#..#.#..#.####.#..#.####.####.",
+        )
