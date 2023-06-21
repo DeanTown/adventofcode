@@ -1,6 +1,6 @@
 import unittest
 
-from y2022 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10
+from y2022 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11
 
 
 class Test2022(unittest.TestCase):
@@ -56,3 +56,8 @@ class Test2022(unittest.TestCase):
             results[1],
             "###...##..#..#..##..####.###..####.####.#..#.#..#.#.#..#..#.#....#..#.#.......#.###..#....##...#..#.###..#..#.###....#..#..#.#.##.#.#..####.#....###..#.....#...#..#.#..#.#.#..#..#.#....#.#..#....#....###...###.#..#.#..#.####.#..#.####.####.",
         )
+
+    def test_day11(self):
+        results = day11.go()
+        self.assertEqual(results[0], 151312)
+        self.assertEqual(results[1], False)

@@ -57,7 +57,7 @@ def go():
                 item = item // 3
                 # perform test and throw to new monkey
                 target = None
-                if item % monkey.test_value:
+                if item % monkey.test_value == 0:
                     target = monkey.target_true
                 else:
                     target = monkey.target_false
@@ -65,16 +65,8 @@ def go():
 
     monkey_inspections = [monkey.inspections for monkey in monkeys]
     monkey_inspections = sorted(monkey_inspections, reverse=True)[:2]
-    # ----------------IPDB----------------#
-    import asyncio
 
-    asyncio.set_event_loop(asyncio.new_event_loop())
-    import ipdb
-
-    ipdb.set_trace()
-    # ----------------IPDB----------------#
-
-    return reduce(lambda x, y: x * y, monkey_inspections), None
+    return reduce(lambda x, y: x * y, monkey_inspections), False
 
 
 def parse_input(input):
