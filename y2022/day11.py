@@ -1,12 +1,6 @@
 from lib.utils import read_input
 from functools import reduce
-import operator
-
-
-op_map = {
-    "+": operator.add,
-    "*": operator.mul,
-}
+from copy import deepcopy
 
 
 class Monkey:
@@ -43,8 +37,19 @@ Monkey {self.number}:
 def go():
     input = read_input("input/2022:11.txt")
     monkeys = parse_input(input)
+    monkeys2 = deepcopy(monkeys)
 
-    for _ in range(20):
+    inspections = run_rounds(monkeys, 20)
+    inspections2 = run_rounds(monkeys2, 10000, no_worries=False)
+
+    return reduce(lambda x, y: x * y, inspections), reduce(
+        lambda x, y: x * y, inspections2
+    )
+
+
+def run_rounds(monkeys, num_rounds, no_worries=True):
+    for _ in range(num_rounds):
+        print(f"round {_}")
         for monkey in monkeys:
             while monkey.items:
                 item = monkey.items.pop(0)
@@ -52,9 +57,13 @@ def go():
                 monkey.inspections += 1
                 # increase worry level
                 op_value = item if monkey.op_value == "old" else int(monkey.op_value)
-                item = monkey.op(item, op_value)
+                if monkey.op == "+":
+                    item = item + op_value
+                elif monkey.op == "*":
+                    item = item * op_value
                 # decrease worry level
-                item = item // 3
+                if no_worries:
+                    item = item // 3
                 # perform test and throw to new monkey
                 target = None
                 if item % monkey.test_value == 0:
@@ -64,9 +73,7 @@ def go():
                 monkeys[target].items.append(item)
 
     monkey_inspections = [monkey.inspections for monkey in monkeys]
-    monkey_inspections = sorted(monkey_inspections, reverse=True)[:2]
-
-    return reduce(lambda x, y: x * y, monkey_inspections), False
+    return sorted(monkey_inspections, reverse=True)[:2]
 
 
 def parse_input(input):
@@ -82,7 +89,7 @@ def parse_input(input):
         # parse operation
         operation = values[2].split("=")
         operation = operation[1].split()
-        op = op_map.get(operation[1])
+        op = operation[1]
         op_value = operation[2]
         # parse test
         test_value = int(values[3].split()[-1])
