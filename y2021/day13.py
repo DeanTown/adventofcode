@@ -21,7 +21,6 @@ class Node:
 def go():
     input = read_input("input/2021:13.txt", split_lines=True)
 
-    # PART 1
     nodes = []
     while True:
         line = input.pop(0)
