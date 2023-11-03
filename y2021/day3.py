@@ -1,5 +1,4 @@
 from lib.utils import read_input
-import copy
 
 
 def go():
