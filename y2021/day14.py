@@ -1,4 +1,5 @@
 from lib.utils import read_input
+from collections import defaultdict
 
 
 def go():
@@ -14,7 +15,23 @@ def go():
     count = polymer_calc(template, mapping, 10)
     part1 = max(count) - min(count)
 
-    count = polymer_calc(template, mapping, 40)
+    pairs = defaultdict(int)
+    elems = defaultdict(int)
+
+    for i, char in enumerate(template[:-1]):
+        pairs[template[i : i + 2]] += 1
+        elems[char] += 1
+    elems[template[-1]] += 1
+
+    for _ in range(40):
+        for comb, count in list(pairs.items()):
+            new_elem = mapping.get(comb, "")
+            elems[new_elem] += count
+            pairs[comb] -= count
+            pairs[comb[0] + new_elem] += count
+            pairs[new_elem + comb[1]] += count
+
+    part2 = max(elems.values()) - min(elems.values())
 
     return part1, part2
 
